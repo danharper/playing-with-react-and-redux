@@ -4,28 +4,30 @@ import { bindActionCreators } from 'redux'
 import * as PropertiesListActions from './actions'
 import PropertiesList from './PropertiesList'
 
-@connect(state => ({
-  propertiesList: state.propertiesList
-}))
+@connect(state => state.propertiesList)
 export default class PropertiesListContainer extends Component {
+
   static propTypes = {
-    propertiesList: PropTypes.shape({
-      data: PropTypes.arrayOf(PropTypes.object).isRequired,
-      loading: PropTypes.bool.isRequired,
-      error: PropTypes.any,
-      filters: PropTypes.object.isRequired,
-    }).isRequired,
+    // state
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.any,
+    filters: PropTypes.object.isRequired,
+    // redux
     dispatch: PropTypes.func.isRequired,
   }
+
   render() {
-    const { propertiesList, dispatch } = this.props
+    const { data, loading, error, filters, dispatch } = this.props
+
     return (
       <PropertiesList
-        items={propertiesList.data}
-        loading={propertiesList.loading}
-        error={propertiesList.error}
-        currentFilters={propertiesList.filters}
+        items={data}
+        loading={loading}
+        error={error}
+        currentFilters={filters}
         {...bindActionCreators(PropertiesListActions, dispatch)} />
     )
   }
+
 }
