@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'redux/react'
-import { bindActionCreators } from 'redux'
 import { FilterItem } from './FilterItem'
 
 export default class FetchingSelectFilter extends Component {
