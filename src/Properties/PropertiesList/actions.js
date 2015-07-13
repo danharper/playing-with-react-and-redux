@@ -38,13 +38,16 @@ const changePage = (pageChanger) => (dispatch, getState) => {
   dispatch({ type: PAGE_CHANGED, payload: { page: nextPage }})
 }
 
+const inc = val => val + 1
+const dec = val => val - 1
+
 export const nextPage = () => dispatch => {
-  dispatch(changePage(page => page + 1))
+  dispatch(changePage(inc))
   dispatch(fetchProperties())
 }
 
 export const previousPage = () => dispatch => {
-  dispatch(changePage(page => page - 1))
+  dispatch(changePage(dec))
   dispatch(fetchProperties())
 }
 
