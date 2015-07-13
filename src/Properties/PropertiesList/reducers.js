@@ -1,4 +1,4 @@
-import { FILTER_CHANGED, FETCH_PROPERTIES } from './types'
+import { FILTER_CHANGED, PAGE_CHANGED, FETCH_PROPERTIES } from './types'
 
 const initialState = {
   loading: false,
@@ -20,9 +20,10 @@ export function propertiesList(state = initialState, action) {
   }
 }
 
-export function propertiesListFilters(state = {}, action) {
+export function propertiesListFilters(state = { page: 1 }, action) {
   switch (action.type) {
     case FILTER_CHANGED:
+    case PAGE_CHANGED:
       return {...state, ...action.payload}
     default:
       return state
