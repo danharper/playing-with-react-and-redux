@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'redux/react'
+import { connect } from 'react-redux'
 import * as ClientSelectActions from './actions'
 import FetchingSelectFilter from '../FetchingSelectFilter'
 
