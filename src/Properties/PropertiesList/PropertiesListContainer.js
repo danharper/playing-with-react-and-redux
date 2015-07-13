@@ -4,7 +4,10 @@ import { bindActionCreators } from 'redux'
 import * as PropertiesListActions from './actions'
 import PropertiesList from './PropertiesList'
 
-@connect(state => state.propertiesList)
+@connect(state => ({
+  ...state.propertiesList,
+  filters: state.propertiesListFilters
+}))
 export default class PropertiesListContainer extends Component {
 
   static propTypes = {

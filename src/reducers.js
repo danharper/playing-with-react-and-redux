@@ -1,3 +1,3 @@
-export { propertiesList } from './Properties/PropertiesList/reducers'
+export * from './Properties/PropertiesList/reducers'
 
-export { clientsSelect } from './Filters/FilterInputs/ClientsSelectFilter/reducers'
+export * from './Filters/FilterInputs/ClientsSelectFilter/reducers'
