@@ -25,6 +25,10 @@ export default class PropertiesList extends Component {
     filterList: PropTypes.func.isRequired,
   }
 
+  componentWillMount() {
+    this.props.goToPage(1);
+  }
+
   render() {
     return (
       <FilteredList {...this.props} filters={FILTERS}>

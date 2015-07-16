@@ -15,7 +15,7 @@ export default class FiltersList extends Component {
   render() {
     const { filters } = this.props
     return (
-      <div>
+      <div className="filters">
         {filters.map(filter => (
           <div key={filter.field}>
             {this.renderRow(filter)}

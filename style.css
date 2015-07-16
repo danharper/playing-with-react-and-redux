@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+
+.filtered-list {
+  padding: 1em;
+}
+
+.list {
+
+}
+
+.list__item {
+  padding: .5em;
+  background: #eee;
+  clear: both;
+  margin-bottom: 1em;
+}
+
+.list__item:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.list__item__left {
+  width: 70%;
+  float: left;
+}
+
+.list__item__right {
+  width: 30%;
+  float: right;
+  text-align: right;
+}
+
+.list__item__badge {
+  display: inline-block;
+  background: #ddd;
+  padding: .5em;
+}
+.list__item__badge[icon="client"] {
+}
+
+
+.filtered-list .list {
+  float: left;
+  width: 75%;
+  padding: 0 1em;
+}
+
+.filters {
+
+}
+
+.filtered-list .filters {
+  float: right;
+  width: 25%;
+  padding: 0 1em;
+}
+
+
+.list__filter {
+  border: 1px solid grey;
+  margin-bottom: 1em;
+}
+.list__filter__head {
+  background: grey;
+  cursor: pointer;
+  padding: .5em;
+}
+.list__filter__head__arrow {
+  float: right;
+}
+.list__filter__body {
+  padding: 1em;
+}
+.list__filter__body input, .list__filter__body select {
+  width: 100%;
+  padding: .5em;
+}
+.list__filter__loading {
+  font-style: italic;
+}
+.list__filter__error {
+
+}
+.list__filter__error__message {
+  font-weight: bold;
+}
+.list__filter__error__retry {
+  color: #999;
+  font-size: .8em;
+  cursor: pointer;
+}
+.list__filter__error__retry:hover {
+  text-decoration: underline;
+}
+.list__filter__input {
+  width: 100%;
+}
+.list__filter__input--select {
+
+}

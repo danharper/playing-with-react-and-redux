@@ -11,7 +11,7 @@ export default class List extends Component {
   render() {
     const { items, loading, error } = this.props
     return (
-      <div>
+      <div className="list">
         {loading && <Spinner />}
         {error && <ListError error={error} />}
         <ul>

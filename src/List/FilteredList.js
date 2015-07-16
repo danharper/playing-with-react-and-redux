@@ -11,7 +11,7 @@ export default class FilteredList extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="filtered-list">
         {this.renderList()}
         {this.renderFilters()}
       </div>

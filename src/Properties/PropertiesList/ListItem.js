@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { ListItemLeft, ListItemRight, Badge } from '../../List'
+import { ListItem, ListItemLeft, ListItemRight, Badge } from '../../List'
 
 export default class PropertyListItem extends Component {
   static propTypes = {
@@ -8,16 +8,15 @@ export default class PropertyListItem extends Component {
   render() {
     const { property } = this.props
     return (
-      <div onClick={::this.clicked}>
+      <ListItem onClick={::this.clicked}>
         <ListItemLeft>
           <p>{property.address.line1}</p>
           <p>{property.address.city}, {property.address.postcode}</p>
         </ListItemLeft>
         <ListItemRight>
           {property.client && <ClientBadge>{property.client.name}</ClientBadge>}
-          ':D'
         </ListItemRight>
-      </div>
+      </ListItem>
     )
   }
   clicked() {

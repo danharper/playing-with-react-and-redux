@@ -18,8 +18,10 @@ const fetchProperties = () => async (dispatch, getState) => {
 
   dispatch({ type: PENDING })
 
+  let query = getState().propertiesListFilters;
+
   try {
-    let response = await api('properties', { query: getState().propertiesListFilters })
+    let response = await api('properties', { query })
     dispatch({ type: SUCCESS, payload: response })
   }
   catch (e) {
