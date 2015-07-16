@@ -23,6 +23,10 @@ export default class PropertiesList extends Component {
     error: PropTypes.any,
     currentFilters: PropTypes.object.isRequired,
     filterList: PropTypes.func.isRequired,
+    pagination: PropTypes.object.isRequired,
+    nextPage: PropTypes.func.isRequired,
+    previousPage: PropTypes.func.isRequired,
+    goToPage: PropTypes.func.isRequired,
   }
 
   componentWillMount() {

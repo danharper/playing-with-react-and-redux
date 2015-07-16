@@ -8,12 +8,19 @@ export default class FilteredList extends Component {
     filters: FiltersPropType,
     currentFilters: PropTypes.object.isRequired,
     filterList: PropTypes.func.isRequired,
+    pagination: PropTypes.object.isRequired,
+    nextPage: PropTypes.func.isRequired,
+    previousPage: PropTypes.func.isRequired,
+    goToPage: PropTypes.func.isRequired,
   }
   render() {
+    const pagination = this.renderPagination()
     return (
       <div className="filtered-list">
+        {pagination}
         {this.renderList()}
         {this.renderFilters()}
+        {pagination}
       </div>
     )
   }
@@ -29,6 +36,17 @@ export default class FilteredList extends Component {
     const { filterList, currentFilters, filters } = this.props
     return (
       <FiltersList filterChanged={filterList} currentFilters={currentFilters} filters={filters} />
+    )
+  }
+  renderPagination() {
+    const { previousPage, nextPage, loading } = this.props
+    const { currentPage, hasNext, hasPrev } = this.props.pagination
+    return (
+      <div>
+        <button disabled={!hasPrev || loading} onClick={previousPage}>Prev</button>
+        <div>{currentPage}</div>
+        <button disabled={!hasNext || loading} onClick={nextPage}>Next</button>
+      </div>
     )
   }
 }

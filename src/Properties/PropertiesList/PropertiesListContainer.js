@@ -6,7 +6,8 @@ import PropertiesList from './PropertiesList'
 
 @connect(state => ({
   ...state.propertiesList,
-  filters: state.propertiesListFilters
+  filters: state.propertiesListFilters,
+  pagination: state.propertiesPagination
 }))
 export default class PropertiesListContainer extends Component {
 
@@ -16,12 +17,13 @@ export default class PropertiesListContainer extends Component {
     loading: PropTypes.bool.isRequired,
     error: PropTypes.any,
     filters: PropTypes.object.isRequired,
+    pagination: PropTypes.object.isRequired,
     // redux
     dispatch: PropTypes.func.isRequired,
   }
 
   render() {
-    const { data, loading, error, filters, dispatch } = this.props
+    const { data, loading, error, filters, pagination, dispatch } = this.props
 
     return (
       <PropertiesList
@@ -29,6 +31,7 @@ export default class PropertiesListContainer extends Component {
         loading={loading}
         error={error}
         currentFilters={filters}
+        pagination={pagination}
         {...bindActionCreators(PropertiesListActions, dispatch)} />
     )
   }
