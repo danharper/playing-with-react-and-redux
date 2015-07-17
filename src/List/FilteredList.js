@@ -9,7 +9,12 @@ export default class FilteredList extends Component {
     filters: FiltersPropType,
     currentFilters: PropTypes.object.isRequired,
     filterList: PropTypes.func.isRequired,
-    pagination: PropTypes.object.isRequired,
+    pagination: PropTypes.shape({
+      currentPage: PropTypes.number.isRequired,
+      totalPages: PropTypes.number.isRequired,
+      hasNext: PropTypes.bool.isRequired,
+      hasPrev: PropTypes.bool.isRequired,
+    }).isRequired,
     nextPage: PropTypes.func.isRequired,
     previousPage: PropTypes.func.isRequired,
     goToPage: PropTypes.func.isRequired,
@@ -49,11 +54,12 @@ export default class FilteredList extends Component {
   }
   renderPagination() {
     const { previousPage, nextPage, goToPage, loading, pagination } = this.props
-    const { currentPage, hasNext, hasPrev } = pagination
+    const { currentPage, totalPages, hasNext, hasPrev } = pagination
     return (
       <Pagination
         disabled={loading}
         currentPage={currentPage}
+        totalPages={totalPages}
         hasNext={hasNext}
         hasPrev={hasPrev}
         nextPage={nextPage}

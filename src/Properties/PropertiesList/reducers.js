@@ -22,6 +22,7 @@ export function propertiesList(state = initialState, action) {
 
 const initialPaginationState = {
   currentPage: 1,
+  totalPages: 2,
   hasNext: false,
   hasPrev: false
 }
@@ -33,6 +34,7 @@ export function propertiesPagination(state = initialPaginationState, action) {
       const { currentPage, totalPages } = action.payload.pagination
       return {
         currentPage,
+        totalPages,
         hasNext: totalPages > currentPage,
         hasPrev: currentPage > 1
       }
