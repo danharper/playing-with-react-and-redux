@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import List from './List'
 import FiltersList, { FiltersPropType } from '../Filters/FiltersList'
+import Pagination from './Pagination'
 
 export default class FilteredList extends Component {
   static propTypes = {
@@ -17,10 +18,18 @@ export default class FilteredList extends Component {
     const pagination = this.renderPagination()
     return (
       <div className="filtered-list">
-        {pagination}
-        {this.renderList()}
-        {this.renderFilters()}
-        {pagination}
+        <div className="filtered-list__list-wrapper">
+          <div className="filtered-list__pagination-wrapper--top">
+            {pagination}
+          </div>
+          {this.renderList()}
+          <div className="filtered-list__pagination-wrapper--bottom">
+            {pagination}
+          </div>
+        </div>
+        <div className="filtered-list__filters-wrapper">
+          {this.renderFilters()}
+        </div>
       </div>
     )
   }
@@ -39,14 +48,18 @@ export default class FilteredList extends Component {
     )
   }
   renderPagination() {
-    const { previousPage, nextPage, loading } = this.props
-    const { currentPage, hasNext, hasPrev } = this.props.pagination
+    const { previousPage, nextPage, goToPage, loading, pagination } = this.props
+    const { currentPage, hasNext, hasPrev } = pagination
     return (
-      <div>
-        <button disabled={!hasPrev || loading} onClick={previousPage}>Prev</button>
-        <div>{currentPage}</div>
-        <button disabled={!hasNext || loading} onClick={nextPage}>Next</button>
-      </div>
+      <Pagination
+        disabled={loading}
+        currentPage={currentPage}
+        hasNext={hasNext}
+        hasPrev={hasPrev}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        goToPage={goToPage}
+        />
     )
   }
 }

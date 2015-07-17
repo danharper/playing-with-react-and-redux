@@ -10,6 +10,11 @@ body {
 .filtered-list {
   padding: 1em;
 }
+.filtered-list:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .list {
 
@@ -48,7 +53,7 @@ body {
 }
 
 
-.filtered-list .list {
+.filtered-list__list-wrapper {
   float: left;
   width: 75%;
   padding: 0 1em;
@@ -58,7 +63,7 @@ body {
 
 }
 
-.filtered-list .filters {
+.filtered-list__filters-wrapper {
   float: right;
   width: 25%;
   padding: 0 1em;
@@ -106,4 +111,40 @@ body {
 }
 .list__filter__input--select {
 
+}
+
+
+.pagination {
+
+}
+.pagination:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pagination__details {
+  float: left;
+  width: 50%;
+}
+.pagination__prev-next {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+.pagination__prev-next__button {
+  margin-left: 1em;
+}
+.pagination__details__current, .pagination__details__total {
+  padding: 0 .3em;
+  font-weight: bold;
+}
+
+
+.filtered-list__pagination-wrapper--top {
+  margin-bottom: 1em;
+}
+
+.filtered-list__pagination-wrapper--bottom {
+  margin-top: 1em;
 }
