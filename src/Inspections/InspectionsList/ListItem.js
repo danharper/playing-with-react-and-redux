@@ -15,8 +15,7 @@ export default class InspectionListItem extends Component {
           <p>{inspection.type.name}</p>
           <p>{property.address.line1}</p>
           <p>{property.address.city}, {property.address.postcode}</p>
-          {property.client && <ClientBadge>{property.client.name}</ClientBadge>}
-          <MaybeBadge icon="client" maybe={inspection.client} none="No Client" />
+          <MaybeBadge icon="client" maybe={property.client} none="No Client" />
         </ListItemLeft>
         <ListItemRight>
           <p>{inspection.state.name}</p>
