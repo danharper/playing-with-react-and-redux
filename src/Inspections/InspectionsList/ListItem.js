@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { ListItem, ListItemLeft, ListItemRight, Badge } from '../../List'
-import moment from 'moment'
+import ConductDate from '../ConductDate'
 
 export default class InspectionListItem extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class InspectionListItem extends Component {
         </ListItemLeft>
         <ListItemRight>
           <p>{inspection.state.name}</p>
-          <InspectionConductDate date={inspection.conduct_date} />
+          <ConductDate date={inspection.conduct_date} />
           <MaybeBadge icon="typist" maybe={inspection.typist} none="No Typist" />
           <MaybeBadge icon="clerk" maybe={inspection.clerk} none="No Clerk" />
         </ListItemRight>
@@ -28,31 +28,6 @@ export default class InspectionListItem extends Component {
   }
   clicked() {
     alert(`You clicked inspection #${this.props.inspection.id}`)
-  }
-}
-
-function formatConductDate(conductDate) {
-  const DATE = 'DD MMMM YYYY'
-  const TIME = 'HH:mm'
-  let date = moment(conductDate)
-  if (date.hours() === 0) {
-    return date.format(DATE)
-  }
-  else {
-    return date.format(`${DATE} [at] ${TIME}`)
-  }
-}
-
-class InspectionConductDate extends Component {
-  static propTypes = {
-    date: PropTypes.string.isRequired,
-  }
-  render() {
-    return (
-      <div>
-        {formatConductDate(this.props.date)}
-      </div>
-    )
   }
 }
 
@@ -86,11 +61,5 @@ class MaybeBadge extends Component {
         </div>
       )
     }
-  }
-}
-
-class ClientBadge extends Badge {
-  static defaultProps = {
-    icon: 'client'
   }
 }
