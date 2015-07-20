@@ -5,17 +5,19 @@ import * as PropertiesListActions from './actions'
 import PropertiesList from './PropertiesList'
 
 @connect(state => ({
-  ...state.propertiesList,
+  data: state.propertiesList,
   filters: state.propertiesListFilters,
-  pagination: state.propertiesPagination
+  pagination: state.propertiesListPagination
 }))
 export default class PropertiesListContainer extends Component {
 
   static propTypes = {
     // state
-    data: PropTypes.arrayOf(PropTypes.object).isRequired,
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.any,
+    data: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object).isRequired,
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.any,
+    }).isRequired,
     filters: PropTypes.object.isRequired,
     pagination: PropTypes.object.isRequired,
     // redux
@@ -27,9 +29,9 @@ export default class PropertiesListContainer extends Component {
 
     return (
       <PropertiesList
-        items={data}
-        loading={loading}
-        error={error}
+        items={data.data}
+        loading={data.loading}
+        error={data.error}
         currentFilters={filters}
         pagination={pagination}
         {...bindActionCreators(PropertiesListActions, dispatch)} />

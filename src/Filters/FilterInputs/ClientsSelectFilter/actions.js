@@ -12,7 +12,7 @@ export const loadClients = () => async dispatch => {
       toError = false
       throw 'WOAH!'
     }
-    dispatch({ type: 'CLIENTS_SELECT', payload })
+    dispatch({ type: 'CLIENTS_SELECT', payload: payload.data })
   }
   catch (e) {
     dispatch({ type: 'CLIENTS_SELECT_FAILED', payload: e })

@@ -1,8 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 import * as reducers from './reducers'
+import middleware from './middleware'
 
-const middleware = [ thunk ]
 const createAppStore = applyMiddleware(...middleware)(createStore)
 
 export default createAppStore(combineReducers(reducers))

@@ -43,7 +43,7 @@ export default class Pagination extends Component {
           of
           <span className="pagination__details__total">{totalPages}</span>
         </div>
-        
+
         <div className="pagination__prev-next">
           <button
             disabled={!hasPrev || disabled}
@@ -79,7 +79,7 @@ class PaginationPagesSelect extends Component {
     const { total } = this.props
     let out = []
     for (let i = 1; i <= total; i++) {
-      out.push(<option>{i}</option>)
+      out.push(<option key={i}>{i}</option>)
     }
     return out
   }

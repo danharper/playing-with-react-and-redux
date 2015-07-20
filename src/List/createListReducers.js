@@ -1,0 +1,95 @@
+var exConfig = {
+  storeNames: {
+    filters: 'propertiesListFilters',
+    pagination: 'propertiesListPagination',
+    data: 'propertiesList',
+  },
+  actionTypes: {
+    request: ['FETCH_PROPERTIES', 'FETCH_PROPERTIES_SUCCESS', 'FETCH_PROPERTIES_ERROR'],
+    filter: 'PROPERTIES_LIST_FILTER_CHANGED',
+  },
+}
+
+
+const INITIAL_FILTERS_STATE = {
+  pages: 1,
+}
+
+const INITIAL_PAGINATION_STATE = {
+  currentPage: 1,
+  totalPages: 1,
+  hasNext: false,
+  hasPrev: false,
+}
+
+const INITIAL_DATA_STATE = {
+  loading: false,
+  data: [],
+  error: null
+}
+
+
+export default function createListReducers(config) {
+
+  const { storeNames, actionTypes } = config
+
+  const {
+    filters: STORE_NAME_FILTERS,
+    pagination: STORE_NAME_PAGINATION,
+    data: STORE_NAME_DATA,
+  } = storeNames
+
+  const {
+    request: ACTION_TYPE_REQUEST_LIST,
+    filter: ACTION_TYPE_CHANGE_FILTER,
+  } = actionTypes
+
+
+
+
+  function listFiltersReducer(state = INITIAL_FILTERS_STATE, action) {
+    switch (action.type) {
+      case ACTION_TYPE_CHANGE_FILTER:
+        return {...state, ...action.payload}
+      default:
+        return state
+    }
+  }
+
+  function listPaginationReducer(state = INITIAL_PAGINATION_STATE, action) {
+    const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
+    switch (action.type) {
+      case SUCCESS:
+        const { currentPage, totalPages } = action.payload.pagination
+        return {
+          currentPage,
+          totalPages,
+          hasNext: totalPages > currentPage,
+          hasPrev: currentPage > 1,
+        }
+      default:
+        return state
+    }
+  }
+
+  function listDataReducer(state = INITIAL_DATA_STATE, action) {
+    const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
+    switch (action.type) {
+      case PENDING:
+        return {...state, loading: true}
+      case SUCCESS:
+        return {...state, loading: false, data: action.payload.data}
+      case ERROR:
+        return {...state, loading: false, error: action.payload}
+      default:
+        return state
+    }
+  }
+
+  return {
+    [STORE_NAME_FILTERS]: listFiltersReducer,
+    [STORE_NAME_PAGINATION]: listPaginationReducer,
+    [STORE_NAME_DATA]: listDataReducer,
+  }
+
+}
