@@ -12,7 +12,7 @@ var exConfig = {
 
 
 const INITIAL_FILTERS_STATE = {
-  pages: 1,
+  page: 1,
 }
 
 const INITIAL_PAGINATION_STATE = {

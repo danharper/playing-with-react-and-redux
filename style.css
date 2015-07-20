@@ -49,6 +49,9 @@ body {
   background: #ddd;
   padding: .5em;
 }
+.list__item__badge--empty {
+  background: #e7e7e7;
+}
 .list__item__badge[icon="client"] {
 }
 
