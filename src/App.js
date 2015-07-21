@@ -7,7 +7,7 @@ import PropertiesListContainer from './Properties/PropertiesList/PropertiesListC
 @provide(store)
 export default class App extends Component {
   render() {
-    // return <InspectionsListContainer />
-    return <PropertiesListContainer />
+    return <InspectionsListContainer />
+    // return <PropertiesListContainer />
   }
 }

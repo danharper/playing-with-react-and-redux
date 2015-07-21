@@ -5,6 +5,7 @@ import ConductDate from '../ConductDate'
 export default class InspectionListItem extends Component {
   static propTypes = {
     inspection: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
   }
   render() {
     const { inspection } = this.props
@@ -27,7 +28,7 @@ export default class InspectionListItem extends Component {
     )
   }
   clicked() {
-    alert(`You clicked inspection #${this.props.inspection.id}`)
+    this.props.onClick && this.props.onClick(this.props.inspection)
   }
 }
 
