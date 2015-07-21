@@ -1,6 +1,6 @@
 export function storeNames(namespace) {
   return {
-    data: namespace,
+    list: namespace,
     filters: `${namespace}Filters`,
     pagination: `${namespace}Pagination`,
   }

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { FilteredList } from '../../List'
 import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
 import PropertyListItem from './ListItem'
+import { ComponentPropType } from '../../List/PropShapes'
 
 const FILTERS = [
   { field: 'address', name: 'Address', type: TEXT },
@@ -17,17 +18,7 @@ const FILTERS = [
 ]
 
 export default class PropertiesList extends Component {
-  static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object).isRequired,
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.any,
-    currentFilters: PropTypes.object.isRequired,
-    filterList: PropTypes.func.isRequired,
-    pagination: PropTypes.object.isRequired,
-    nextPage: PropTypes.func.isRequired,
-    previousPage: PropTypes.func.isRequired,
-    goToPage: PropTypes.func.isRequired,
-  }
+  static propTypes = ComponentPropType
 
   componentWillMount() {
     this.props.goToPage(1);
@@ -44,7 +35,7 @@ export default class PropertiesList extends Component {
   renderListItem(property) {
     return <PropertyListItem key={property.id} property={property} onClick={::this.clicked} />
   }
-  
+
   clicked(property) {
     alert(`You clicked ${property.id}!`)
   }

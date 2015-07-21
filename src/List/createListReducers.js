@@ -19,7 +19,7 @@ const INITIAL_PAGINATION_STATE = {
 
 const INITIAL_DATA_STATE = {
   loading: false,
-  data: [],
+  items: [],
   error: null
 }
 
@@ -29,7 +29,7 @@ export default function createListReducers(config) {
   const { storeNamespace, actionTypeNamespace } = config
 
   const {
-    data: STORE_NAME_DATA,
+    list: STORE_NAME_DATA,
     filters: STORE_NAME_FILTERS,
     pagination: STORE_NAME_PAGINATION,
   } = storeNames(storeNamespace)
@@ -72,7 +72,7 @@ export default function createListReducers(config) {
       case PENDING:
         return {...state, loading: true}
       case SUCCESS:
-        return {...state, loading: false, data: action.payload.data}
+        return {...state, loading: false, items: action.payload.data}
       case ERROR:
         return {...state, loading: false, error: action.payload}
       default:

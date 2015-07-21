@@ -18,7 +18,7 @@ export default function createListActions(config) {
   const { storeNamespace, actionTypeNamespace, fetch: FETCH_LIST } = config
 
   const {
-    data: STORE_NAME_DATA,
+    list: STORE_NAME_DATA,
     filters: STORE_NAME_FILTERS,
     pagination: STORE_NAME_PAGINATION,
   } = storeNames(storeNamespace)

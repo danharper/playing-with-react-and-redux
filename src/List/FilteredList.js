@@ -1,23 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import List from './List'
-import FiltersList, { FiltersPropType } from '../Filters/FiltersList'
+import FiltersList from '../Filters/FiltersList'
 import Pagination from './Pagination'
+import { ComponentPropType, FiltersPropType } from './PropShapes'
 
 export default class FilteredList extends Component {
   static propTypes = {
-    ...List.propTypes,
+    ...ComponentPropType,
     filters: FiltersPropType,
-    currentFilters: PropTypes.object.isRequired,
-    filterList: PropTypes.func.isRequired,
-    pagination: PropTypes.shape({
-      currentPage: PropTypes.number.isRequired,
-      totalPages: PropTypes.number.isRequired,
-      hasNext: PropTypes.bool.isRequired,
-      hasPrev: PropTypes.bool.isRequired,
-    }).isRequired,
-    nextPage: PropTypes.func.isRequired,
-    previousPage: PropTypes.func.isRequired,
-    goToPage: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
   }
   render() {
     const pagination = this.renderPagination()
@@ -39,7 +30,7 @@ export default class FilteredList extends Component {
     )
   }
   renderList() {
-    const { items, loading, error } = this.props
+    const { items, loading, error } = this.props.list
     return (
       <List items={items} loading={loading} error={error}>
         {this.props.children}
