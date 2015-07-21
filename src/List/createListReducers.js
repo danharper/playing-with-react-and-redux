@@ -39,8 +39,6 @@ export default function createListReducers(config) {
     filter: ACTION_TYPE_CHANGE_FILTER,
   } = actionTypeNames(actionTypeNamespace)
 
-  console.log(ACTION_TYPE_REQUEST_LIST, STORE_NAME_DATA, STORE_NAME_FILTERS)
-
 
 
   function listFiltersReducer(state = INITIAL_FILTERS_STATE, action) {
@@ -70,7 +68,6 @@ export default function createListReducers(config) {
 
   function listDataReducer(state = INITIAL_DATA_STATE, action) {
     const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
-    console.log('sss', state, action)
     switch (action.type) {
       case PENDING:
         return {...state, loading: true}

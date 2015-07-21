@@ -3,7 +3,6 @@ import { storeNames } from './createNamespaces'
 
 export const stateSelector = storeNamespace => state => {
   const names = storeNames(storeNamespace)
-  console.log('names', names)
   return {
     list: state[names.data],
     filters: state[names.filters],

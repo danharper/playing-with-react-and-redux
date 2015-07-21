@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
-import { connectList } from './createStateSelector'
+import { connect } from 'react-redux'
+import { stateSelector } from './createStateSelector'
 import ListContainerPropTypes from './ListContainerPropTypes'
 
 export default function makeListContainer(ListComponent, storeNamespace, ListActions) {
+  @connect(stateSelector(storeNamespace))
   class ListContainer extends Component {
     static propTypes = ListContainerPropTypes
     render() {
@@ -21,5 +23,5 @@ export default function makeListContainer(ListComponent, storeNamespace, ListAct
     }
   }
 
-  return connectList(storeNamespace)(ListContainer)
+  return ListContainer
 }
