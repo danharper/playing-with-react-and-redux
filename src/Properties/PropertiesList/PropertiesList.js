@@ -42,6 +42,10 @@ export default class PropertiesList extends Component {
   }
 
   renderListItem(property) {
-    return <PropertyListItem key={property.id} property={property} />
+    return <PropertyListItem key={property.id} property={property} onClick={::this.clicked} />
+  }
+  
+  clicked(property) {
+    alert(`You clicked ${property.id}!`)
   }
 }

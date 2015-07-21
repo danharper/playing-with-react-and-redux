@@ -4,6 +4,7 @@ import { ListItem, ListItemLeft, ListItemRight, Badge } from '../../List'
 export default class PropertyListItem extends Component {
   static propTypes = {
     property: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
   }
   render() {
     const { property } = this.props
@@ -20,7 +21,7 @@ export default class PropertyListItem extends Component {
     )
   }
   clicked() {
-    alert(`You clicked property #${this.props.property.id}`)
+    this.props.onClick && this.props.onClick(this.props.property)
   }
 }
 

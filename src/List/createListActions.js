@@ -1,9 +1,7 @@
 var exConfig = {
-  storeNames: {
-    filters: 'propertiesListFilters',
-    pagination: 'propertiesListPagination',
-    data: 'propertiesList',
-  },
+  storeNamespace: 'propertiesList',
+  actionTypeNamespace: 'PROPERTIES_LIST',
+  storeName: 'propertiesList',
   actionTypes: {
     request: ['FETCH_PROPERTIES', 'FETCH_PROPERTIES_SUCCESS', 'FETCH_PROPERTIES_ERROR'],
     filter: 'PROPERTIES_LIST_FILTER_CHANGED',
@@ -13,20 +11,22 @@ var exConfig = {
   }
 }
 
+import { storeNames, actionTypeNames } from './createNamespaces'
+
 export default function createListActions(config) {
 
-  const { storeNames, actionTypes, fetch: FETCH_LIST } = config
+  const { storeNamespace, actionTypeNamespace, fetch: FETCH_LIST } = config
 
   const {
+    data: STORE_NAME_DATA,
     filters: STORE_NAME_FILTERS,
     pagination: STORE_NAME_PAGINATION,
-    data: STORE_NAME_DATA,
-  } = storeNames
+  } = storeNames(storeNamespace)
 
   const {
     request: ACTION_TYPE_REQUEST_LIST,
     filter: ACTION_TYPE_CHANGE_FILTER,
-  } = actionTypes
+  } = actionTypeNames(actionTypeNamespace)
 
 
   const fetchList = (dispatch, getState) => {

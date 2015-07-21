@@ -1,13 +1,8 @@
+import { storeNames, actionTypeNames } from './createNamespaces'
+
 var exConfig = {
-  storeNames: {
-    filters: 'propertiesListFilters',
-    pagination: 'propertiesListPagination',
-    data: 'propertiesList',
-  },
-  actionTypes: {
-    request: ['FETCH_PROPERTIES', 'FETCH_PROPERTIES_SUCCESS', 'FETCH_PROPERTIES_ERROR'],
-    filter: 'PROPERTIES_LIST_FILTER_CHANGED',
-  },
+  storeNamespace: 'propertiesList',
+  actionTypeNamespace: 'PROPERTIES_LIST',
 }
 
 
@@ -31,19 +26,20 @@ const INITIAL_DATA_STATE = {
 
 export default function createListReducers(config) {
 
-  const { storeNames, actionTypes } = config
+  const { storeNamespace, actionTypeNamespace } = config
 
   const {
+    data: STORE_NAME_DATA,
     filters: STORE_NAME_FILTERS,
     pagination: STORE_NAME_PAGINATION,
-    data: STORE_NAME_DATA,
-  } = storeNames
+  } = storeNames(storeNamespace)
 
   const {
     request: ACTION_TYPE_REQUEST_LIST,
     filter: ACTION_TYPE_CHANGE_FILTER,
-  } = actionTypes
+  } = actionTypeNames(actionTypeNamespace)
 
+  console.log(ACTION_TYPE_REQUEST_LIST, STORE_NAME_DATA, STORE_NAME_FILTERS)
 
 
 
@@ -74,6 +70,7 @@ export default function createListReducers(config) {
 
   function listDataReducer(state = INITIAL_DATA_STATE, action) {
     const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
+    console.log('sss', state, action)
     switch (action.type) {
       case PENDING:
         return {...state, loading: true}
