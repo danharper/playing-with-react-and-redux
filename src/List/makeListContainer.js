@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { stateSelector } from './createStateSelector'
-import { ComponentContainerPropType } from './PropShapes'
+import { ComponentContainerPropType } from './PropTypes'
 
 export default function makeListContainer(ListComponent, storeNamespace, ListActions) {
   @connect(stateSelector(storeNamespace))

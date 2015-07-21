@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { FilteredList } from '../../List'
 import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
 import PropertyListItem from './ListItem'
-import { ComponentPropType } from '../../List/PropShapes'
+import { ComponentPropType } from '../../List/PropTypes'
 
 const FILTERS = [
   { field: 'address', name: 'Address', type: TEXT },

@@ -13,11 +13,7 @@ const PaginationShape = PropTypes.shape({
   hasPrev: PropTypes.bool.isRequired,
 })
 
-export const FiltersPropType = PropTypes.arrayOf(PropTypes.shape({
-  field: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.func.isRequired,
-}))
+export { FiltersPropType } from '../Filters/FiltersList'
 
 export const ComponentPropType = {
   // state

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import List from './List'
 import FiltersList from '../Filters/FiltersList'
 import Pagination from './Pagination'
-import { ComponentPropType, FiltersPropType } from './PropShapes'
+import { ComponentPropType, FiltersPropType } from './PropTypes'
 
 export default class FilteredList extends Component {
   static propTypes = {
