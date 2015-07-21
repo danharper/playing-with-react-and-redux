@@ -1,4 +1,3 @@
-import { connect } from 'react-redux'
 import { storeNames } from './createNamespaces'
 
 export const stateSelector = storeNamespace => state => {
@@ -9,5 +8,3 @@ export const stateSelector = storeNamespace => state => {
     pagination: state[names.pagination],
   }
 }
-
-export const connectList = storeNamespace => component => connect(stateSelector(storeNamespace))(component)
