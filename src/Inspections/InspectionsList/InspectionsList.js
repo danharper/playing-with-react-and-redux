@@ -1,34 +1,23 @@
 import React, { Component, PropTypes } from 'react'
-import { FilteredList } from '../../List'
-import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
-import InspectionListItem from './ListItem'
-import { ComponentPropType } from '../../List/PropTypes'
+import { app as App } from './app'
+import ListItem from './ListItem'
 
-const FILTERS = [
-  { field: 'address', name: 'Address', type: TEXT },
-  { field: 'client_id', name: 'Client!', type: CLIENT_SELECT },
-]
-
-export default class InspectionsList extends Component {
-  static propTypes = ComponentPropType
-
-  componentWillMount() {
-    this.props.goToPage(1);
-  }
+export default class List extends Component {
 
   render() {
     return (
-      <FilteredList {...this.props} filters={FILTERS}>
+      <App>
         {::this.renderListItem}
-      </FilteredList>
+      </App>
     )
   }
 
-  renderListItem(property) {
-    return <InspectionListItem key={property.id} inspection={property} onClick={::this.clicked} />
+  renderListItem(inspection) {
+    return <ListItem key={inspection.id} inspection={inspection} onClick={::this.clicked} />
   }
 
   clicked(inspection) {
-    alert(`Guess what? You clicked on ${inspection.id} :D`)
+    alert(`You clicked ${inspection.id}!`)
   }
+
 }

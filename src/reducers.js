@@ -1,5 +1,11 @@
-export * from './Properties/PropertiesList/reducers'
+import { reducers as pr } from './Properties/PropertiesList'
 
-export * from './Inspections/InspectionsList/reducers'
+import { reducers as ir } from './Inspections/InspectionsList'
 
-export * from './Filters/FilterInputs/ClientsSelectFilter/reducers'
+import * as csr from './Filters/FilterInputs/ClientsSelectFilter/reducers'
+
+export default {
+  ...pr,
+  ...ir,
+  ...csr,
+}
