@@ -48,7 +48,7 @@ export default function create({ storeNamespace, actionTypeNamespace, filters, f
   }
 
   return {
-    app: ListComponent,
+    App: ListComponent,
     reducers: REDUCERS,
   }
 }

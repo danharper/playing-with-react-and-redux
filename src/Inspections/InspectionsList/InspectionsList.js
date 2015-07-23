@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { app as App } from './app'
+import { App } from './core'
 import ListItem from './ListItem'
 
 export default class List extends Component {

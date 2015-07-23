@@ -1,1 +1,1 @@
-export { reducers as default } from './app'
+export { reducers as default } from './core'

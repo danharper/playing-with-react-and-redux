@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import { app as PropertiesListApp } from './core'
+import { App } from './core'
 import PropertyListItem from './ListItem'
 
 export default class PropertiesList extends Component {
 
   render() {
     return (
-      <PropertiesListApp>
+      <App>
         {::this.renderListItem}
-      </PropertiesListApp>
+      </App>
     )
   }
 
