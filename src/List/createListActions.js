@@ -1,11 +1,6 @@
 var exConfig = {
   storeNamespace: 'propertiesList',
   actionTypeNamespace: 'PROPERTIES_LIST',
-  storeName: 'propertiesList',
-  actionTypes: {
-    request: ['FETCH_PROPERTIES', 'FETCH_PROPERTIES_SUCCESS', 'FETCH_PROPERTIES_ERROR'],
-    filter: 'PROPERTIES_LIST_FILTER_CHANGED',
-  },
   fetch({ query }) {
     return api('properties', { query })
   }

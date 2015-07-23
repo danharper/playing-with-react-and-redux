@@ -1,6 +1,6 @@
 import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
 import createListApp from '../../List/createListApp'
-import api from '../../api'
+import { getProperties } from '../api'
 
 const FILTERS = [
   { field: 'address', name: 'Address', type: TEXT },
@@ -18,5 +18,5 @@ export default createListApp({
   storeNamespace: 'propertiesList',
   actionTypeNamespace: 'PROPERTIES_LIST',
   filters: FILTERS,
-  fetch: ({ query }) => api('properties', { query })
+  fetch: getProperties,
 })

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { app as PropertiesListApp } from './app'
+import { app as PropertiesListApp } from './core'
 import PropertyListItem from './ListItem'
 
 export default class PropertiesList extends Component {
