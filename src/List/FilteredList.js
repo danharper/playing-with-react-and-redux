@@ -44,8 +44,9 @@ export default class FilteredList extends Component {
     )
   }
   renderPagination() {
-    const { previousPage, nextPage, goToPage, loading, pagination } = this.props
+    const { previousPage, nextPage, goToPage, list, pagination } = this.props
     const { currentPage, totalPages, hasNext, hasPrev } = pagination
+    const { loading } = list
     return (
       <Pagination
         disabled={loading}

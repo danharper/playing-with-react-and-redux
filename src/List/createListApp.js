@@ -5,7 +5,7 @@ import FilteredList from './FilteredList'
 import createListActions from './createListActions'
 import createListReducers from './createListReducers'
 import { ComponentContainerPropType } from './PropTypes'
-import { stateSelector } from './createStateSelector'
+import { storeNames } from './createNamespaces'
 
 export default function create({ storeNamespace, actionTypeNamespace, filters, fetch }) {
 
@@ -17,7 +17,14 @@ export default function create({ storeNamespace, actionTypeNamespace, filters, f
     storeNamespace, actionTypeNamespace
   })
 
-  @connect(stateSelector(storeNamespace))
+  @connect(state => {
+    const names = storeNames(storeNamespace)
+    return {
+      list: state[names.list],
+      filters: state[names.filters],
+      pagination: state[names.pagination],
+    }
+  })
   class ListComponent extends Component {
     static propTypes = ComponentContainerPropType
 
@@ -27,15 +34,11 @@ export default function create({ storeNamespace, actionTypeNamespace, filters, f
     }
 
     render() {
-
       const { list, filters:currentFilters, pagination, dispatch } = this.props
 
       return (
         <FilteredList
-          list={list}
-          currentFilters={currentFilters}
-          pagination={pagination}
-          filters={filters}
+          {...{list, currentFilters, filters, pagination}}
           {...this.actions}
         >
           {this.props.children}
