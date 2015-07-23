@@ -1,33 +1,21 @@
-var exConfig = {
-  storeName: 'propertiesList',
-  actionTypeNamespace: 'PROPERTIES_LIST',
-  fetch({ query }) {
-    return api('properties', { query })
-  }
-}
-
-import { storeNames, actionTypeNames } from './createNamespaces'
+import actionTypes from './actionTypes'
 
 export default function createListActions(config) {
+  const { storeName: STORE_NAME, fetch: FETCH_LIST } = config
 
-  const { storeName: STORE_NAME, actionTypeNamespace, fetch: FETCH_LIST } = config
-
-  const {
-    request: ACTION_TYPE_REQUEST_LIST,
-    filter: ACTION_TYPE_CHANGE_FILTER,
-  } = actionTypeNames(actionTypeNamespace)
+  const { REQUEST_LIST_ACTION, CHANGE_FILTER_ACTION } = actionTypes(config.actionTypeNamespace)
 
 
   const fetchList = (dispatch, getState) => {
     dispatch({
-      types: ACTION_TYPE_REQUEST_LIST,
+      types: REQUEST_LIST_ACTION,
       payload: FETCH_LIST({ query: getState()[STORE_NAME].filters })
     })
   }
 
   const filterList = (filter, value) => dispatch => {
     dispatch({
-      type: ACTION_TYPE_CHANGE_FILTER,
+      type: CHANGE_FILTER_ACTION,
       payload: { [filter]: value }
     })
 

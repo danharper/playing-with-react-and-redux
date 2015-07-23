@@ -3,17 +3,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import FilteredList from './FilteredList'
 import createListActions from './createListActions'
-import createListReducers from './createListReducers'
 import { ComponentContainerPropType } from './PropTypes'
-import { storeNames } from './createNamespaces'
 
 export default function create({ storeName, actionTypeNamespace, filters, fetch }) {
 
   const ACTIONS = createListActions({
     storeName, actionTypeNamespace, fetch
   })
-
-  const REDUCERS = createListReducers(actionTypeNamespace)
 
   @connect(state => state[storeName])
   class ListComponent extends Component {
@@ -38,8 +34,5 @@ export default function create({ storeName, actionTypeNamespace, filters, fetch 
     }
   }
 
-  return {
-    App: ListComponent,
-    reducers: REDUCERS,
-  }
+  return ListComponent
 }

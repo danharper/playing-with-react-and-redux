@@ -1,3 +1,3 @@
-// export { reducers as inspectionsList } from './core'
-import { reducers } from './core'
-export const inspectionsList = reducers
+import createListReducers from '../../List/createListReducers'
+
+export const inspectionsList = createListReducers('INSPECTIONS_LIST')

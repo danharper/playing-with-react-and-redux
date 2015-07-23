@@ -1,6 +1,4 @@
-import { storeNames, actionTypeNames } from './createNamespaces'
-
-
+import actionTypes from './actionTypes'
 
 const INITIAL_FILTERS_STATE = {
   page: 1,
@@ -21,17 +19,11 @@ const INITIAL_DATA_STATE = {
 
 
 export default function createListReducers(actionTypeNamespace) {
-
-  const {
-    request: ACTION_TYPE_REQUEST_LIST,
-    filter: ACTION_TYPE_CHANGE_FILTER,
-  } = actionTypeNames(actionTypeNamespace)
-
-
+  const { REQUEST_LIST_ACTION, CHANGE_FILTER_ACTION } = actionTypes(actionTypeNamespace)
 
   function filtersReducer(state = INITIAL_FILTERS_STATE, action) {
     switch (action.type) {
-      case ACTION_TYPE_CHANGE_FILTER:
+      case CHANGE_FILTER_ACTION:
         return {...state, ...action.payload}
       default:
         return state
@@ -39,7 +31,7 @@ export default function createListReducers(actionTypeNamespace) {
   }
 
   function paginationReducer(state = INITIAL_PAGINATION_STATE, action) {
-    const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
+    const [ PENDING, SUCCESS, ERROR ] = REQUEST_LIST_ACTION
     switch (action.type) {
       case SUCCESS:
         const { currentPage, totalPages } = action.payload.pagination
@@ -55,7 +47,7 @@ export default function createListReducers(actionTypeNamespace) {
   }
 
   function listReducer(state = INITIAL_DATA_STATE, action) {
-    const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
+    const [ PENDING, SUCCESS, ERROR ] = REQUEST_LIST_ACTION
     switch (action.type) {
       case PENDING:
         return {...state, loading: true}
@@ -69,6 +61,7 @@ export default function createListReducers(actionTypeNamespace) {
   }
 
   return function(state = {}, action) {
+    console.log('@@', state, action, actionTypeNamespace)
     return {
       list: listReducer(state.list, action),
       pagination: paginationReducer(state.pagination, action),
