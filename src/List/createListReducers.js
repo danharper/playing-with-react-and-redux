@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux'
 import actionTypes from './actionTypes'
 
 const INITIAL_LIST_STATE = { loading: false, items: [], error: null }
@@ -7,13 +8,11 @@ const INITIAL_FILTERS_STATE = { page: 1 }
 export default function createListReducers(actionTypeNamespace) {
   const { REQUEST_LIST_ACTION, CHANGE_FILTER_ACTION } = actionTypes(actionTypeNamespace)
 
-  return function(state = {}, action) {
-    return {
-      list: listReducer(state.list, action),
-      pagination: paginationReducer(state.pagination, action),
-      filters: filtersReducer(state.filters, action),
-    }
-  }
+  return combineReducers({
+    list: listReducer,
+    pagination: paginationReducer,
+    filters: filtersReducer,
+  })
 
   //
   // LIST REDUCER

@@ -7,9 +7,7 @@ import { ComponentContainerPropType } from './PropTypes'
 
 export default function create({ storeName, actionTypeNamespace, filters, fetch }) {
 
-  const ACTIONS = createListActions({
-    storeName, actionTypeNamespace, fetch
-  })
+  const ACTIONS = createListActions({ storeName, actionTypeNamespace, fetch })
 
   @connect(state => state[storeName])
   class ListComponent extends Component {
