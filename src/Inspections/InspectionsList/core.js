@@ -8,7 +8,7 @@ const FILTERS = [
 ]
 
 export default createListApp({
-  storeNamespace: 'inspectionsList',
+  storeName: 'inspectionsList',
   actionTypeNamespace: 'INSPECTIONS_LIST',
   filters: FILTERS,
   fetch: getInspections

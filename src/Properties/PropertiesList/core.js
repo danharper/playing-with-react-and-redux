@@ -15,7 +15,7 @@ const FILTERS = [
 ]
 
 export default createListApp({
-  storeNamespace: 'propertiesList',
+  storeName: 'propertiesList',
   actionTypeNamespace: 'PROPERTIES_LIST',
   filters: FILTERS,
   fetch: getProperties,

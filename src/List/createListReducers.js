@@ -1,7 +1,6 @@
 import { storeNames, actionTypeNames } from './createNamespaces'
 
 var exConfig = {
-  storeNamespace: 'propertiesList',
   actionTypeNamespace: 'PROPERTIES_LIST',
 }
 
@@ -26,13 +25,7 @@ const INITIAL_DATA_STATE = {
 
 export default function createListReducers(config) {
 
-  const { storeNamespace, actionTypeNamespace } = config
-
-  const {
-    list: STORE_NAME_DATA,
-    filters: STORE_NAME_FILTERS,
-    pagination: STORE_NAME_PAGINATION,
-  } = storeNames(storeNamespace)
+  const { actionTypeNamespace } = config
 
   const {
     request: ACTION_TYPE_REQUEST_LIST,
@@ -41,7 +34,7 @@ export default function createListReducers(config) {
 
 
 
-  function listFiltersReducer(state = INITIAL_FILTERS_STATE, action) {
+  function filtersReducer(state = INITIAL_FILTERS_STATE, action) {
     switch (action.type) {
       case ACTION_TYPE_CHANGE_FILTER:
         return {...state, ...action.payload}
@@ -50,7 +43,7 @@ export default function createListReducers(config) {
     }
   }
 
-  function listPaginationReducer(state = INITIAL_PAGINATION_STATE, action) {
+  function paginationReducer(state = INITIAL_PAGINATION_STATE, action) {
     const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
     switch (action.type) {
       case SUCCESS:
@@ -66,7 +59,7 @@ export default function createListReducers(config) {
     }
   }
 
-  function listDataReducer(state = INITIAL_DATA_STATE, action) {
+  function listReducer(state = INITIAL_DATA_STATE, action) {
     const [ PENDING, SUCCESS, ERROR ] = ACTION_TYPE_REQUEST_LIST
     switch (action.type) {
       case PENDING:
@@ -80,10 +73,12 @@ export default function createListReducers(config) {
     }
   }
 
-  return {
-    [STORE_NAME_FILTERS]: listFiltersReducer,
-    [STORE_NAME_PAGINATION]: listPaginationReducer,
-    [STORE_NAME_DATA]: listDataReducer,
+  return function(state = {}, action) {
+    return {
+      list: listReducer(state.list, action),
+      pagination: paginationReducer(state.pagination, action),
+      filters: filtersReducer(state.filters, action),
+    }
   }
 
 }

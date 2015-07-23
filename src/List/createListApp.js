@@ -7,22 +7,23 @@ import createListReducers from './createListReducers'
 import { ComponentContainerPropType } from './PropTypes'
 import { storeNames } from './createNamespaces'
 
-export default function create({ storeNamespace, actionTypeNamespace, filters, fetch }) {
+export default function create({ storeName, actionTypeNamespace, filters, fetch }) {
 
   const ACTIONS = createListActions({
-    storeNamespace, actionTypeNamespace, fetch
+    storeName, actionTypeNamespace, fetch
   })
 
   const REDUCERS = createListReducers({
-    storeNamespace, actionTypeNamespace
+    actionTypeNamespace
   })
 
   @connect(state => {
-    const names = storeNames(storeNamespace)
+    // const names = storeNames(storeName)
+    console.log('!!', storeName, state)
     return {
-      list: state[names.list],
-      filters: state[names.filters],
-      pagination: state[names.pagination],
+      list: state[storeName].list,
+      filters: state[storeName].filters,
+      pagination: state[storeName].pagination,
     }
   })
   class ListComponent extends Component {
