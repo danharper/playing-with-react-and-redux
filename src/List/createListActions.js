@@ -2,7 +2,6 @@ import actionTypes from './actionTypes'
 
 export default function createListActions(config) {
   const { storeName: STORE_NAME, fetch: FETCH_LIST } = config
-
   const { REQUEST_LIST_ACTION, CHANGE_FILTER_ACTION } = actionTypes(config.actionTypeNamespace)
 
   return {
