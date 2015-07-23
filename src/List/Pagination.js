@@ -36,6 +36,7 @@ export default class Pagination extends Component {
           Page
           <span className="pagination__details__current">
             <PaginationPagesSelect
+              disabled={disabled}
               current={currentPage}
               total={totalPages}
               onChange={goToPage} />
@@ -66,11 +67,12 @@ class PaginationPagesSelect extends Component {
     current: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
   }
   render() {
-    const { current } = this.props
+    const { current, disabled } = this.props
     return (
-      <select value={current} onChange={::this.changed}>
+      <select value={current} onChange={::this.changed} disabled={disabled}>
         {this.renderOptions()}
       </select>
     )
