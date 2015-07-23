@@ -1,8 +1,5 @@
 import { storeNames, actionTypeNames } from './createNamespaces'
 
-var exConfig = {
-  actionTypeNamespace: 'PROPERTIES_LIST',
-}
 
 
 const INITIAL_FILTERS_STATE = {
@@ -23,9 +20,7 @@ const INITIAL_DATA_STATE = {
 }
 
 
-export default function createListReducers(config) {
-
-  const { actionTypeNamespace } = config
+export default function createListReducers(actionTypeNamespace) {
 
   const {
     request: ACTION_TYPE_REQUEST_LIST,

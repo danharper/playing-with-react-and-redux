@@ -13,19 +13,9 @@ export default function create({ storeName, actionTypeNamespace, filters, fetch 
     storeName, actionTypeNamespace, fetch
   })
 
-  const REDUCERS = createListReducers({
-    actionTypeNamespace
-  })
+  const REDUCERS = createListReducers(actionTypeNamespace)
 
-  @connect(state => {
-    // const names = storeNames(storeName)
-    console.log('!!', storeName, state)
-    return {
-      list: state[storeName].list,
-      filters: state[storeName].filters,
-      pagination: state[storeName].pagination,
-    }
-  })
+  @connect(state => state[storeName])
   class ListComponent extends Component {
     static propTypes = ComponentContainerPropType
 
