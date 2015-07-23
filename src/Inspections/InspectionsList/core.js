@@ -1,5 +1,5 @@
 import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
-import createListApp from '../../List/createListApp'
+import { createListApp } from '../../List'
 import { getInspections } from '../api'
 
 const FILTERS = [

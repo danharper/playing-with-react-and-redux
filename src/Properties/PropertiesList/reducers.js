@@ -1,3 +1,3 @@
-import createListReducers from '../../List/createListReducers'
+import { createListReducers } from '../../List'
 
 export const propertiesList = createListReducers('PROPERTIES_LIST')
