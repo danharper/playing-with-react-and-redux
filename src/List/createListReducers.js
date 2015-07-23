@@ -42,6 +42,7 @@ export default function createListReducers(config) {
 
 
   function listFiltersReducer(state = INITIAL_FILTERS_STATE, action) {
+    console.info('!!', state, action)
     switch (action.type) {
       case ACTION_TYPE_CHANGE_FILTER:
         return {...state, ...action.payload}
