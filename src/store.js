@@ -1,7 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import * as reducers from './reducers'
 import middleware from './middleware'
-console.info('REDUCERS', reducers)
+
+console.debug('REDUCERS', reducers)
 
 const createAppStore = applyMiddleware(...middleware)(createStore)
 

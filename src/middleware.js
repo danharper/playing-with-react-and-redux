@@ -3,7 +3,7 @@ import promise from 'redux-promise-middleware'
 
 function log() {
   return next => action => {
-    console.log('ACTION', action)
+    console.debug('ACTION', action)
     next(action)
   }
 }
