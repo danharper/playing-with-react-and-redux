@@ -5,27 +5,38 @@ export default function createListActions(config) {
   const { REQUEST_LIST_ACTION, CHANGE_FILTER_ACTION } = actionTypes(config.actionTypeNamespace)
 
   return {
+    loadList,
     filterList,
     nextPage,
     previousPage: prevPage,
     goToPage,
   }
 
-  function fetchList(dispatch, getState) {
+  function loadList() {
+    return load
+  }
+
+  function load(dispatch, getState) {
     dispatch({
       types: REQUEST_LIST_ACTION,
       payload: FETCH_LIST({ query: getState()[STORE_NAME].filters })
     })
   }
 
+  function addFilter(filter, value) {
+    return {
+      type: CHANGE_FILTER_ACTION,
+      payload: {
+        [filter]: value
+      }
+    }
+  }
+
   function filterList(filter, value) {
     return dispatch => {
-      dispatch({
-        type: CHANGE_FILTER_ACTION,
-        payload: { [filter]: value }
-      })
-
-      dispatch(fetchList)
+      dispatch(addFilter(filter, value))
+      dispatch(addFilter('page', 1))
+      dispatch(load)
     }
   }
 
@@ -33,7 +44,8 @@ export default function createListActions(config) {
     return (dispatch, getState) => {
       let currentPage = getState()[STORE_NAME].filters.page
       let nextPage = pageChanger(currentPage)
-      dispatch(filterList('page', nextPage))
+      dispatch(addFilter('page', nextPage))
+      dispatch(load)
     }
   }
 

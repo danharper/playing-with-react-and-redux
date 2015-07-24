@@ -9,6 +9,11 @@ export default class FilteredList extends Component {
     ...ComponentPropType,
     filters: FiltersPropType,
     children: PropTypes.func.isRequired,
+    loadList: PropTypes.func,
+  }
+  componentWillMount() {
+    const { loadList } = this.props
+    loadList && loadList()
   }
   render() {
     const pagination = this.renderPagination()
