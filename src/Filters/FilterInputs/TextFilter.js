@@ -4,7 +4,6 @@ import { FilterItem } from './FilterItem'
 export default class TextFilter extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    field: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onActive: PropTypes.func.isRequired,
     onInactive: PropTypes.func.isRequired,
@@ -23,16 +22,12 @@ export default class TextFilter extends Component {
     )
   }
   changed(e) {
-    this.props.onChange(this.props.field, e.target.value)
+    this.props.onChange(e.target.value)
   }
   opened() {
-    this.props.onActive(this.props.field)
+    this.props.onActive()
   }
   closed() {
-    this.props.onInactive(this.props.field)
-  }
-  triggerChange(value) {
-    const { onChange, field } = this.props
-    onChange(field, value)
+    this.props.onInactive()
   }
 }

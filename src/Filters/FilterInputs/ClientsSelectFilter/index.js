@@ -11,16 +11,14 @@ export default class ClientsSelectFilter extends Component {
     onChange: PropTypes.func.isRequired,
     onActive: PropTypes.func.isRequired,
     onInactive: PropTypes.func.isRequired,
-    field: PropTypes.string,
     title: PropTypes.string,
     value: PropTypes.any,
   }
   static defaultProps = {
-    field: 'client_id',
     title: 'Client',
   }
   render() {
-    const { clients, title, value } = this.props
+    const { clients, title, value, onActive, onInactive } = this.props
 
     return (
       <FetchingSelectFilter
@@ -30,28 +28,20 @@ export default class ClientsSelectFilter extends Component {
         list={clients.data}
         fetch={::this.loadClients}
         onChange={::this.filterChanged}
-        onActive={::this.opened}
-        onInactive={::this.closed}
+        onActive={onActive}
+        onInactive={onInactive}
         value={value}
       >
-        {::this.renderClientItem}
+        {client =>
+          <option key={client.id} value={client.id}>{client.name}</option>
+        }
       </FetchingSelectFilter>
     )
   }
   loadClients(...args) {
     this.props.dispatch(ClientSelectActions.loadClients(...args))
   }
-  renderClientItem(client) {
-    return <option key={client.id} value={client.id}>{client.name}</option>
-  }
   filterChanged(clientId) {
-    clientId = clientId ? parseInt(clientId, 10) : null
-    this.props.onChange(this.props.field, clientId)
-  }
-  opened() {
-    this.props.onActive(this.props.field)
-  }
-  closed() {
-    this.props.onInactive(this.props.field)
+    this.props.onChange(clientId ? parseInt(clientId, 10) : null)
   }
 }
