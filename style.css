@@ -6,6 +6,32 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+.app {
+
+}
+.app__nav {
+
+}
+.app__nav li {
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+}
+.app__nav a {
+  padding: .8em 0;
+  display: block;
+  text-decoration: none;
+  background: #eee;
+  color: black;
+  border-bottom: .2em solid transparent;
+}
+.app__nav .active {
+  border-bottom-color: lime;
+}
+.app__main {
+  margin-top: .5em;
+}
+
 
 .filtered-list {
   padding: 1em;
