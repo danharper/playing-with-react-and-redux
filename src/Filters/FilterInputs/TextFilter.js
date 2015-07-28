@@ -6,6 +6,8 @@ export default class TextFilter extends Component {
     title: PropTypes.string.isRequired,
     field: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onActive: PropTypes.func.isRequired,
+    onInactive: PropTypes.func.isRequired,
     type: PropTypes.string,
     value: PropTypes.string,
   }
@@ -15,16 +17,19 @@ export default class TextFilter extends Component {
   render() {
     const { title, type, value } = this.props
     return (
-      <FilterItem title={title} onClose={::this.clear}>
+      <FilterItem title={title} onOpen={::this.opened} onClose={::this.closed}>
         <input type={type} value={value} onChange={::this.changed} />
       </FilterItem>
     )
   }
   changed(e) {
-    this.triggerChange(e.target.value)
+    this.props.onChange(this.props.field, e.target.value)
   }
-  clear() {
-    this.triggerChange(null)
+  opened() {
+    this.props.onActive(this.props.field)
+  }
+  closed() {
+    this.props.onInactive(this.props.field)
   }
   triggerChange(value) {
     const { onChange, field } = this.props

@@ -9,6 +9,8 @@ export const FiltersPropType = PropTypes.arrayOf(PropTypes.shape({
 export default class FiltersList extends Component {
   static propTypes = {
     filterChanged: PropTypes.func.isRequired,
+    filterEnabled: PropTypes.func.isRequired,
+    filterDisabled: PropTypes.func.isRequired,
     currentFilters: PropTypes.object.isRequired,
     filters: FiltersPropType,
   }
@@ -26,7 +28,7 @@ export default class FiltersList extends Component {
   }
   renderRow(filter) {
     const { currentFilters } = this.props
-    const current = currentFilters[filter.field]
-    return filter.type(filter, current, this.props.filterChanged)
+    const current = currentFilters[filter.field] || {}
+    return filter.type(filter, current.value, this.props.filterChanged, this.props.filterEnabled, this.props.filterDisabled)
   }
 }

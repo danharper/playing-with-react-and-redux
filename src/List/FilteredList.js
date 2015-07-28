@@ -43,9 +43,9 @@ export default class FilteredList extends Component {
     )
   }
   renderFilters() {
-    const { filterList, currentFilters, filters } = this.props
+    const { filterList, currentFilters, filters, enableFilter, disableFilter } = this.props
     return (
-      <FiltersList filterChanged={filterList} currentFilters={currentFilters} filters={filters} />
+      <FiltersList filterEnabled={enableFilter} filterDisabled={disableFilter} filterChanged={filterList} currentFilters={currentFilters} filters={filters} />
     )
   }
   renderPagination() {

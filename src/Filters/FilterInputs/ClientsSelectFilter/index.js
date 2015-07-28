@@ -9,6 +9,8 @@ import FetchingSelectFilter from '../FetchingSelectFilter'
 export default class ClientsSelectFilter extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    onActive: PropTypes.func.isRequired,
+    onInactive: PropTypes.func.isRequired,
     field: PropTypes.string,
     title: PropTypes.string,
     value: PropTypes.any,
@@ -19,6 +21,7 @@ export default class ClientsSelectFilter extends Component {
   }
   render() {
     const { clients, title, value } = this.props
+
     return (
       <FetchingSelectFilter
         title={title}
@@ -27,6 +30,8 @@ export default class ClientsSelectFilter extends Component {
         list={clients.data}
         fetch={::this.loadClients}
         onChange={::this.filterChanged}
+        onActive={::this.opened}
+        onInactive={::this.closed}
         value={value}
       >
         {::this.renderClientItem}
@@ -42,5 +47,11 @@ export default class ClientsSelectFilter extends Component {
   filterChanged(clientId) {
     clientId = clientId ? parseInt(clientId, 10) : null
     this.props.onChange(this.props.field, clientId)
+  }
+  opened() {
+    this.props.onActive(this.props.field)
+  }
+  closed() {
+    this.props.onInactive(this.props.field)
   }
 }
