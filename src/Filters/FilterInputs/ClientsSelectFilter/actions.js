@@ -1,20 +1,9 @@
 import api from '../../../api'
-import sleep from '../../../sleep'
+import { FETCH_CLIENTS_TYPES } from './types'
 
-let toError = true // fake error on first request just to demo UI
+const getClientsList = async () => (await api('clients')).data
 
-export const loadClients = () => async dispatch => {
-  dispatch({ type: 'CLIENTS_SELECT_LOADING' })
-  try {
-    let payload = await api('clients')
-    await sleep(500)
-    if (toError) {
-      toError = false
-      throw 'WOAH!'
-    }
-    dispatch({ type: 'CLIENTS_SELECT', payload: payload.data })
-  }
-  catch (e) {
-    dispatch({ type: 'CLIENTS_SELECT_FAILED', payload: e })
-  }
-}
+export const loadClients = () => ({
+  types: FETCH_CLIENTS_TYPES,
+  payload: getClientsList()
+})

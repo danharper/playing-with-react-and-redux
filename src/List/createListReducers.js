@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
 import actionTypes from './actionTypes'
+import { asyncLevels } from '../support'
 
 const INITIAL_LIST_STATE = { loading: false, items: [], error: null }
 const INITIAL_PAGINATION_STATE = { currentPage: 1, totalPages: 1, hasNext: false, hasPrev: false }
 const INITIAL_FILTERS_STATE = { page: { value: 1, active: true } }
 
-const [ PENDING, SUCCESS, ERROR ] = [ 0, 1, 2 ]
+const [ PENDING, SUCCESS, ERROR ] = asyncLevels
 
 export default function createListReducers(actionTypeNamespace) {
   const {
