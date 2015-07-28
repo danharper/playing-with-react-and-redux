@@ -4,15 +4,16 @@ import { FilterItem } from './FilterItem'
 export default class SelectFilter extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    field: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onActive: PropTypes.func.isRequired,
+    onInactive: PropTypes.func.isRequired,
     options: PropTypes.object.isRequired, // Map
     value: PropTypes.any,
   }
   render() {
     const { title, value } = this.props
     return (
-      <FilterItem title={title} onClose={::this.clear}>
+      <FilterItem title={title} onOpen={::this.opened} onClose={::this.closed}>
         <select onChange={::this.changed} value={value}>
           {this.renderOptions()}
         </select>
@@ -27,13 +28,12 @@ export default class SelectFilter extends Component {
     ]
   }
   changed(e) {
-    this.triggerChange(e.target.value)
+    this.props.onChange(e.target.value)
   }
-  clear() {
-    this.triggerChange(null)
+  opened() {
+    this.props.onActive()
   }
-  triggerChange(value) {
-    const { onChange, field } = this.props
-    onChange(field, value)
+  closed() {
+    this.props.onInactive()
   }
 }

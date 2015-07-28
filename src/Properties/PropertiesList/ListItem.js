@@ -1,27 +1,27 @@
 import React, { Component, PropTypes } from 'react'
-import { ListItemLeft, ListItemRight, Badge } from '../../List'
+import { ListItem, ListItemLeft, ListItemRight, Badge } from '../../List'
 
 export default class PropertyListItem extends Component {
   static propTypes = {
     property: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
   }
   render() {
     const { property } = this.props
     return (
-      <div onClick={::this.clicked}>
+      <ListItem onClick={::this.clicked}>
         <ListItemLeft>
           <p>{property.address.line1}</p>
           <p>{property.address.city}, {property.address.postcode}</p>
         </ListItemLeft>
         <ListItemRight>
           {property.client && <ClientBadge>{property.client.name}</ClientBadge>}
-          ':D'
         </ListItemRight>
-      </div>
+      </ListItem>
     )
   }
   clicked() {
-    alert(`You clicked property #${this.props.property.id}`)
+    this.props.onClick && this.props.onClick(this.props.property)
   }
 }
 

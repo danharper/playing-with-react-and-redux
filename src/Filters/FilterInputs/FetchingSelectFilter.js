@@ -10,12 +10,14 @@ export default class FetchingSelectFilter extends Component {
     title: PropTypes.string.isRequired,
     fetch: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
+    onActive: PropTypes.func.isRequired,
+    onInactive: PropTypes.func.isRequired,
     value: PropTypes.any,
   }
   render() {
     const { title } = this.props
     return (
-      <FilterItem title={title} onOpen={::this.maybeLoadData} onClose={::this.noneSelected}>
+      <FilterItem title={title} onOpen={::this.opened} onClose={::this.closed}>
         {this.renderBody()}
       </FilterItem>
     )
@@ -37,6 +39,13 @@ export default class FetchingSelectFilter extends Component {
       )
     }
   }
+  opened() {
+    this.props.onActive()
+    this.maybeLoadData()
+  }
+  closed() {
+    this.props.onInactive()
+  }
   maybeLoadData() {
     if (this.props.list.length === 0) this.loadData()
   }
@@ -45,9 +54,6 @@ export default class FetchingSelectFilter extends Component {
   }
   itemSelected(e) {
     this.props.onChange(e.target.value)
-  }
-  noneSelected() {
-    this.props.onChange(null)
   }
 }
 

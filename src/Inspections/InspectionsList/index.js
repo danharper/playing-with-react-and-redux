@@ -1,0 +1,1 @@
+export InspectionsList from './InspectionsList'

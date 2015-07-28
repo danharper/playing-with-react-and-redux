@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+
+.filtered-list {
+  padding: 1em;
+}
+.filtered-list:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.list {
+
+}
+
+.list__item {
+  padding: .5em;
+  background: #eee;
+  clear: both;
+  margin-bottom: 1em;
+}
+
+.list__item:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.list__item__left {
+  width: 70%;
+  float: left;
+}
+
+.list__item__right {
+  width: 30%;
+  float: right;
+  text-align: right;
+}
+
+.list__item__badge {
+  display: inline-block;
+  background: #ddd;
+  padding: .5em;
+}
+.list__item__badge--empty {
+  background: #e7e7e7;
+}
+.list__item__badge[icon="client"] {
+}
+
+
+.filtered-list__list-wrapper {
+  float: left;
+  width: 75%;
+  padding: 0 1em;
+}
+
+.filters {
+
+}
+
+.filtered-list__filters-wrapper {
+  float: right;
+  width: 25%;
+  padding: 0 1em;
+}
+
+
+.list__filter {
+  border: 1px solid grey;
+  margin-bottom: 1em;
+}
+.list__filter__head {
+  background: grey;
+  cursor: pointer;
+  padding: .5em;
+}
+.list__filter__head__arrow {
+  float: right;
+}
+.list__filter__body {
+  padding: 1em;
+}
+.list__filter__body input, .list__filter__body select {
+  width: 100%;
+  padding: .5em;
+}
+.list__filter__loading {
+  font-style: italic;
+}
+.list__filter__error {
+
+}
+.list__filter__error__message {
+  font-weight: bold;
+}
+.list__filter__error__retry {
+  color: #999;
+  font-size: .8em;
+  cursor: pointer;
+}
+.list__filter__error__retry:hover {
+  text-decoration: underline;
+}
+.list__filter__input {
+  width: 100%;
+}
+.list__filter__input--select {
+
+}
+
+
+.pagination {
+
+}
+.pagination:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pagination__details {
+  float: left;
+  width: 50%;
+}
+.pagination__prev-next {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+.pagination__prev-next__button {
+  margin-left: 1em;
+}
+.pagination__details__current, .pagination__details__total {
+  padding: 0 .3em;
+  font-weight: bold;
+}
+
+
+.filtered-list__pagination-wrapper--top {
+  margin-bottom: 1em;
+}
+
+.filtered-list__pagination-wrapper--bottom {
+  margin-top: 1em;
+}
