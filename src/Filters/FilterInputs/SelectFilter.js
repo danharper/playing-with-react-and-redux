@@ -28,7 +28,7 @@ export default class SelectFilter extends Component {
     ]
   }
   changed(e) {
-    this.props.onChange(e.target.value)
+    this.props.onChange(e.nativeEvent.target.value)
   }
   opened() {
     this.props.onActive()

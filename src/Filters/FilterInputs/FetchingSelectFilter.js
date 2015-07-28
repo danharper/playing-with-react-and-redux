@@ -53,7 +53,7 @@ export default class FetchingSelectFilter extends Component {
     this.props.fetch()
   }
   itemSelected(e) {
-    this.props.onChange(e.target.value)
+    this.props.onChange(e.nativeEvent.target.value)
   }
 }
 
