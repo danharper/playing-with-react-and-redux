@@ -20,7 +20,8 @@
   "dependencies": {
     "moment": "^2.10.3",
     "query-string": "^2.3.0",
-    "react": "^0.13.3",
+    "react": "^0.14.0-beta1",
+    "react-dom": "^0.14.0-beta1",
     "react-redux": "^0.2.1",
     "redux": "^1.0.0-rc",
     "redux-thunk": "^0.1.0"
