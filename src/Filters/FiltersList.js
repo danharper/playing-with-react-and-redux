@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 export const FiltersPropType = PropTypes.arrayOf(PropTypes.shape({
   field: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.func.isRequired,
+  make: PropTypes.func.isRequired,
 })).isRequired
 
 export default class FiltersList extends Component {
@@ -27,8 +26,14 @@ export default class FiltersList extends Component {
     )
   }
   renderRow(filter) {
-    const { currentFilters } = this.props
-    const current = currentFilters[filter.field] || {}
-    return filter.type(filter, current.value, this.props.filterChanged, this.props.filterEnabled, this.props.filterDisabled)
+    return filter.make({
+      current: this.getCurrentFilterValue(filter.field),
+      onChange: this.props.filterChanged,
+      onActive: this.props.filterEnabled,
+      onInactive: this.props.filterDisabled
+    })
+  }
+  getCurrentFilterValue(field) {
+    return (this.props.currentFilters[field] || {}).value
   }
 }

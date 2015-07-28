@@ -1,10 +1,10 @@
-import { TEXT, SELECT, CLIENT_SELECT } from '../../Filters/FilterInputs'
+import { text, select, clientSelect } from '../../Filters/FilterInputs'
 import { createListApp } from '../../List'
 import { getInspections } from '../api'
 
 const FILTERS = [
-  { field: 'address', name: 'Address', type: TEXT },
-  { field: 'client_id', name: 'Client!', type: CLIENT_SELECT },
+  text('address', 'Address'),
+  clientSelect('client_id', 'Client :D'),
 ]
 
 export default createListApp({
