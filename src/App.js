@@ -3,6 +3,7 @@ import { provide, connect } from 'react-redux'
 import store from './store'
 import { InspectionsList } from './Inspections/InspectionsList'
 import { PropertiesList } from './Properties/PropertiesList'
+import { AddProperty } from './Properties/AddProperty'
 import { reduxRouteComponent, transitionTo } from 'redux-react-router'
 import { Router, Route, Redirect, Link } from 'react-router'
 import { history } from 'react-router/lib/BrowserHistory'
@@ -33,12 +34,6 @@ class Home extends Component {
     return (
       <p>Hello :)</p>
     )
-  }
-}
-
-class AddProperty extends Component {
-  render() {
-    return <p>!!!</p>
   }
 }
 
