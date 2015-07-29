@@ -22,14 +22,14 @@ function fields(state = initialFields, action) {
   return state
 }
 
-function editingAddress(state = false, action) {
+function manuallyEditingAddress(state = false, action) {
   if (action.type === MANUALLY_EDIT_ADDRESS) {
-    return !! action.payload
+    return true
   }
 
   return state
 }
 
 export const addProperty = combineReducers({
-  fields, editingAddress
+  fields, manuallyEditingAddress
 })

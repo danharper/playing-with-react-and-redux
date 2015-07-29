@@ -5,7 +5,6 @@ export const changePropertyField = (field, value) => ({
   payload: { field, value }
 })
 
-export const manuallyEditAddress = (choice: bool) => ({
-  type: MANUALLY_EDIT_ADDRESS,
-  payload: choice
+export const manuallyEditAddress = () => ({
+  type: MANUALLY_EDIT_ADDRESS
 })

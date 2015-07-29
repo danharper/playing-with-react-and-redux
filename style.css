@@ -6,6 +6,8 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+em { font-style: italic; }
+
 .app {
 
 }
@@ -190,31 +192,37 @@ body {
 }
 .add-property__search {
   width: 100%;
-  margin: 2em 0;
+  margin-top: 2em;
 }
-.button--text {
-  background: none;
-  border: none;
-}
-
-.flip-box {
-  background: #eee;
-  padding: 1em;
-}
-.flip-box label {
-  display: block;
-}
-.flip-box label:after { /* clearfix */
+.edit-address-manually:after { /* clearfix */
   content: "";
   display: table;
   clear: both;
 }
-.flip-box label span {
+.edit-address-manually button {
+  background: none;
+  border: none;
+  float: right;
+}
+
+.address-box {
+  background: #eee;
+  padding: 1em;
+}
+.address-box label {
+  display: block;
+}
+.address-box label:after { /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+.address-box label span {
   width: 15%;
   float: left;
   display: inline-block;
 }
-.flip-box label input {
+.address-box label input {
   width: 85%;
   float: left;
   display: inline-block;

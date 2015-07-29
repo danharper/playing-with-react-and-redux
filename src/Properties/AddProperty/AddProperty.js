@@ -44,51 +44,54 @@ const addressFields = [
   { field: 'postcode', label: 'Postcode' },
 ]
 
-class AddProperty extends Component {
+class AddPropertyAddress extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
-    editingAddress: PropTypes.bool.isRequired,
+    manuallyEditingAddress: PropTypes.bool.isRequired,
     changePropertyField: PropTypes.func.isRequired,
     manuallyEditAddress: PropTypes.func.isRequired,
   }
 
   render() {
-    const { editingAddress } = this.props
-
-    return (
-      <div className="add-property">
-        <h1>Add Property</h1>
-        <PostcodeAnywhereSearch onChange={::this.changeFields} className="add-property__search" />
-
-        <button className="button--text" onClick={::this.toggleAddressEditing}>Enter Address Manually</button>
-
-        <div className="flip-box">
-          {editingAddress ? this.renderEditAddress() : this.renderViewAddress()}
-        </div>
-
-        <button>Go!</button>
-      </div>
-    )
+    return this.props.manuallyEditingAddress ? this.renderEditAddress() : this.renderViewAddress()
   }
 
   renderEditAddress() {
     const { fields, changePropertyField } = this.props
     return (
-      <InputFields data={fields} fields={addressFields} onChange={changePropertyField} />
+      <div className="address-box">
+        <InputFields data={fields} fields={addressFields} onChange={changePropertyField} />
+      </div>
     )
   }
 
   renderViewAddress() {
-    let fields = filledFields(this.props.fields)
     return (
-      <address>
+      <div>
+        <PostcodeAnywhereSearch onChange={::this.changeFields} className="add-property__search" />
+
+        {this.renderAddress()}
+
+        <div className="edit-address-manually">
+          <button onClick={::this.editAddress}>Having Problems? Enter Address Manually</button>
+        </div>
+
+      </div>
+    )
+  }
+
+  renderAddress() {
+    let fields = filledFields(this.props.fields)
+
+    return fields.length === 0 ? <div></div> : (
+      <address className="address-box">
         {fields.map(([field, value]) => <p key={field}>{value}</p>)}
       </address>
     )
   }
 
-  toggleAddressEditing() {
-    this.props.manuallyEditAddress( ! this.props.editingAddress)
+  editAddress() {
+    this.props.manuallyEditAddress()
   }
 
   changeFields(fields) {
@@ -103,6 +106,34 @@ function filledFields(fields) {
     .filter(([field, value]) => value)
 }
 
+class AddProperty extends Component {
+  render() {
+    return (
+      <div className="add-property">
+        <h1>Add New Property</h1>
+
+        <h2>Address</h2>
+        <AddPropertyAddress
+          fields={this.props.fields}
+          manuallyEditingAddress={this.props.manuallyEditingAddress}
+          changePropertyField={this.props.changePropertyField}
+          manuallyEditAddress={this.props.manuallyEditAddress} />
+
+        <h2>Details</h2>
+        <div></div>
+        
+        <h2>Client</h2>
+        <div></div>
+
+        <h2>Save</h2>
+        <div>
+          <button>Go!</button>
+        </div>
+
+      </div>
+    )
+  }
+}
 
 
 @connect(state => state.addProperty)
