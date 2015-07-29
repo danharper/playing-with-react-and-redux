@@ -9,7 +9,7 @@ export default class PostcodeAnywhereSearch extends Component {
 
   render() {
     const { onChange, onError, ...rest } = this.props
-    return <button {...rest} onClick={::this.fakeSelection}>Fake Selecting an Address</button>
+    return <input {...rest} onClick={::this.fakeSelection} placeholder="Enter Number/Name and Postcode" />
     return (
       <input name="input" />
     )

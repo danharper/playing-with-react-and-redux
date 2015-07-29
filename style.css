@@ -192,7 +192,19 @@ em { font-style: italic; }
 }
 .add-property__search {
   width: 100%;
-  margin-top: 2em;
+  padding: .7em;
+  font-size: 1em;
+}
+.add-property h1 {
+  font-size: 2em;
+  margin-bottom: .4em;
+}
+.add-property h2 {
+  font-size: 1.6em;
+  margin-bottom: .4em;
+}
+.add-property > div {
+  margin-bottom: 2.5em;
 }
 .edit-address-manually:after { /* clearfix */
   content: "";

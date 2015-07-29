@@ -20,11 +20,23 @@ class InputFields extends Component {
     const { fields, data } = this.props
     return (
       <div>
-        {fields.map(({field, label}) =>
-          <label key={field}><span>{label}</span><input name={field} value={data[field]} onChange={::this.changeField(field)} /></label>
+        {fields.map(config =>
+          <label key={config.field}><span>{config.label}</span>{this.renderFieldType(config, data)}</label>
         )}
       </div>
     )
+  }
+
+  renderFieldType(config, data) {
+    const { type, field } = config
+    if ( ! type || type === 'text') {
+      return <input name={field} value={data[field]} onChange={::this.changeField(field)} />
+    }
+    if (type === 'select') {
+      return <select name={field} value={data[field]} onChange={::this.changeField(field)}>
+        {config.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+      </select>
+    }
   }
 
   changeField(field) {
@@ -106,6 +118,56 @@ function filledFields(fields) {
     .filter(([field, value]) => value)
 }
 
+class AddPropertyDetails extends Component {
+  static propTypes = {
+    details: PropTypes.object.isRequired,
+    changeDetailsField: PropTypes.func.isRequired,
+  }
+  render() {
+    return (
+      <div>
+        <InputFields
+          fields={[
+            { field: 'type', label: 'Type', type: 'select', options: [
+              null,
+              'Apartment',
+          		'Bedsit',
+          		'Bungalow',
+          		'Cottage',
+          		'House',
+          		'Maisonette',
+          		'Mansion',
+          		'Flat - Purpose build',
+          		'Flat - Converted',
+          		'Studio Apartment',
+          		'Tenement',
+          		'Townhouse',
+          		'Other',
+          		'Commercial',
+          		'Condominium',
+          		'Duplex',
+            ] },
+            { field: 'detachment', label: 'Detachment', type: 'select', options: [
+              null,
+              'Detached',
+          		'Semi-Detached',
+          		'Mid Terrace',
+          		'End Terrace',
+            ] },
+            { field: 'furnishing', label: 'Furnishing', type: 'select', options: [
+              null,
+              'Unfurnished',
+          		'Part Furnished',
+          		'Fully Furnished',
+            ] },
+          ]}
+          data={this.props.details}
+          onChange={this.props.changeDetailsField} />
+      </div>
+    )
+  }
+}
+
 class AddProperty extends Component {
   render() {
     return (
@@ -120,10 +182,17 @@ class AddProperty extends Component {
           manuallyEditAddress={this.props.manuallyEditAddress} />
 
         <h2>Details</h2>
-        <div></div>
+        <AddPropertyDetails
+          details={this.props.details}
+          changeDetailsField={this.props.changeDetailsField} />
 
         <h2>Client</h2>
         <div></div>
+
+        <h2>Misc</h2>
+        <div>
+          reference, notes, health etc.
+        </div>
 
         <h2>Save</h2>
         <div>
