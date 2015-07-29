@@ -1,6 +1,6 @@
 import { CHANGE_ADDRESS_FIELD, MANUALLY_EDIT_ADDRESS } from './types'
 
-export const changePropertyField = (field, value) => ({
+export const changeAddressField = (field, value) => ({
   type: CHANGE_ADDRESS_FIELD,
   payload: { field, value }
 })
