@@ -1,7 +1,7 @@
-import { CHANGE_PROPERTY_FIELD, MANUALLY_EDIT_ADDRESS } from './types'
+import { CHANGE_ADDRESS_FIELD, MANUALLY_EDIT_ADDRESS } from './types'
 
 export const changePropertyField = (field, value) => ({
-  type: CHANGE_PROPERTY_FIELD,
+  type: CHANGE_ADDRESS_FIELD,
   payload: { field, value }
 })
 

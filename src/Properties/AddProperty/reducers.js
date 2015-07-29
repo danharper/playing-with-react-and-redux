@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { CHANGE_PROPERTY_FIELD, MANUALLY_EDIT_ADDRESS } from './types'
+import { CHANGE_ADDRESS_FIELD, MANUALLY_EDIT_ADDRESS } from './types'
 
 const initialFields = {
   line1: null,
@@ -11,12 +11,9 @@ const initialFields = {
   postcode: null,
 }
 
-function fields(state = initialFields, action) {
-  if (action.type === CHANGE_PROPERTY_FIELD) {
-    return {
-      ...state,
-      [action.payload.field]: action.payload.value
-    }
+function address(state = initialFields, action) {
+  if (action.type === CHANGE_ADDRESS_FIELD) {
+    return _addFieldValue(state, action)
   }
 
   return state
@@ -30,6 +27,15 @@ function manuallyEditingAddress(state = false, action) {
   return state
 }
 
+// function
+
+function _addFieldValue(state, action) {
+  return {
+    ...state,
+    [action.payload.field]: action.payload.value
+  }
+}
+
 export const addProperty = combineReducers({
-  fields, manuallyEditingAddress
+  address, manuallyEditingAddress
 })

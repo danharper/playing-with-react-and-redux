@@ -46,7 +46,7 @@ const addressFields = [
 
 class AddPropertyAddress extends Component {
   static propTypes = {
-    fields: PropTypes.object.isRequired,
+    address: PropTypes.object.isRequired,
     manuallyEditingAddress: PropTypes.bool.isRequired,
     changePropertyField: PropTypes.func.isRequired,
     manuallyEditAddress: PropTypes.func.isRequired,
@@ -57,7 +57,7 @@ class AddPropertyAddress extends Component {
   }
 
   renderEditAddress() {
-    const { fields, changePropertyField } = this.props
+    const { address, changePropertyField } = this.props
     return (
       <div className="address-box">
         <InputFields data={fields} fields={addressFields} onChange={changePropertyField} />
@@ -81,7 +81,7 @@ class AddPropertyAddress extends Component {
   }
 
   renderAddress() {
-    let fields = filledFields(this.props.fields)
+    let fields = filledFields(this.props.address)
 
     return fields.length === 0 ? <div></div> : (
       <address className="address-box">
@@ -114,14 +114,14 @@ class AddProperty extends Component {
 
         <h2>Address</h2>
         <AddPropertyAddress
-          fields={this.props.fields}
+          address={this.props.address}
           manuallyEditingAddress={this.props.manuallyEditingAddress}
           changePropertyField={this.props.changePropertyField}
           manuallyEditAddress={this.props.manuallyEditAddress} />
 
         <h2>Details</h2>
         <div></div>
-        
+
         <h2>Client</h2>
         <div></div>
 
