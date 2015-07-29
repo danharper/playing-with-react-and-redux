@@ -192,29 +192,29 @@ body {
   width: 100%;
   margin: 2em 0;
 }
-.gone { display: none; }
+.button--text {
+  background: none;
+  border: none;
+}
 
 .flip-box {
   background: #eee;
   padding: 1em;
 }
-.flip-box__piece {
-
-}
-.flip-box__piece label {
+.flip-box label {
   display: block;
 }
-.flip-box__piece label:after { /* clearfix */
+.flip-box label:after { /* clearfix */
   content: "";
   display: table;
   clear: both;
 }
-.flip-box__piece label span {
+.flip-box label span {
   width: 15%;
   float: left;
   display: inline-block;
 }
-.flip-box__piece label input {
+.flip-box label input {
   width: 85%;
   float: left;
   display: inline-block;

@@ -32,6 +32,8 @@ class InputFields extends Component {
   }
 }
 
+
+
 const addressFields = [
   { field: 'line1', label: 'Line 1' },
   { field: 'line2', label: 'Line 2' },
@@ -51,48 +53,57 @@ class AddProperty extends Component {
   }
 
   render() {
-    const { fields, changePropertyField, editingAddress } = this.props
+    const { editingAddress } = this.props
 
     return (
       <div className="add-property">
-        <p>Hello!</p>
+        <h1>Add Property</h1>
         <PostcodeAnywhereSearch onChange={::this.changeFields} className="add-property__search" />
+
+        <button className="button--text" onClick={::this.toggleAddressEditing}>Enter Address Manually</button>
+
         <div className="flip-box">
-          <button onClick={::this.toggleAddressEditing}>Edit Manually</button>
-
-          <div className={classnames('flip-box__piece', { gone: ! editingAddress })}>
-            <InputFields data={fields} fields={addressFields} onChange={changePropertyField} />
-          </div>
-
-          <div className={classnames('flip-box__piece', { gone: editingAddress })}>
-            {this.renderAddress()}
-          </div>
-
+          {editingAddress ? this.renderEditAddress() : this.renderViewAddress()}
         </div>
+
         <button>Go!</button>
       </div>
     )
   }
-  renderAddress() {
-    let fields = this.getFilledAddressFields()
+
+  renderEditAddress() {
+    const { fields, changePropertyField } = this.props
+    return (
+      <InputFields data={fields} fields={addressFields} onChange={changePropertyField} />
+    )
+  }
+
+  renderViewAddress() {
+    let fields = filledFields(this.props.fields)
     return (
       <address>
         {fields.map(([field, value]) => <p key={field}>{value}</p>)}
       </address>
     )
   }
-  getFilledAddressFields() {
-    return Object.keys(this.props.fields)
-      .map(field => [field, this.props.fields[field]])
-      .filter(([field, value]) => value)
-  }
+
   toggleAddressEditing() {
     this.props.manuallyEditAddress( ! this.props.editingAddress)
   }
+
   changeFields(fields) {
     Object.keys(fields).forEach(field => this.props.changePropertyField(field, fields[field]))
   }
+
 }
+
+function filledFields(fields) {
+  return Object.keys(fields)
+    .map(field => [field, fields[field]])
+    .filter(([field, value]) => value)
+}
+
+
 
 @connect(state => state.addProperty)
 export default class AddPropertyConnector extends Component {
